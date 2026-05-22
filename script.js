@@ -56,7 +56,7 @@ const AudioSystem = (() => {
     },
 
     activate(){
-      /* Silent for now to prevent clunking startup/scroll sounds */
+      /* Silent to prevent unwanted clunk sounds */
     }
   };
 })();
@@ -113,7 +113,7 @@ window.addEventListener("load", () => {
   }, 3400);
 });
 
-/* ENTER SYSTEM CINEMATIC TRANSITION */
+/* ENTER SYSTEM CINEMATIC REACTOR ACTIVATION */
 const enterButton = document.querySelector(".primary-btn");
 const startupSound = document.getElementById("startupSound");
 
@@ -131,6 +131,20 @@ function createSystemFlash(){
   }, 1200);
 }
 
+function createZoomOverlay(){
+  const overlay = document.createElement("div");
+  overlay.className = "reactor-zoom-overlay";
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    overlay.classList.add("reactor-zoom-active");
+  }, 20);
+
+  setTimeout(() => {
+    overlay.remove();
+  }, 1600);
+}
+
 function activateDashboard(){
   const panel = document.querySelector(".system-panel");
   const modules = document.querySelectorAll(".os-module");
@@ -146,6 +160,38 @@ function activateDashboard(){
   });
 }
 
+function activateReactor(){
+  const reactorSection = document.querySelector(".reactor-section");
+  const reactorCore = document.querySelector(".reactor-core");
+  const reactorOrb = document.querySelector(".reactor-orb");
+  const reactorRings = document.querySelectorAll(".reactor-ring");
+  const hudChips = document.querySelectorAll(".hud-chip");
+
+  if(reactorSection){
+    reactorSection.classList.add("reactor-section-active");
+  }
+
+  if(reactorCore){
+    reactorCore.classList.add("reactor-core-active");
+  }
+
+  if(reactorOrb){
+    reactorOrb.classList.add("reactor-orb-active");
+  }
+
+  reactorRings.forEach((ring, index) => {
+    setTimeout(() => {
+      ring.classList.add("reactor-ring-active");
+    }, index * 160);
+  });
+
+  hudChips.forEach((chip, index) => {
+    setTimeout(() => {
+      chip.classList.add("hud-chip-active");
+    }, 500 + index * 180);
+  });
+}
+
 if(enterButton){
   enterButton.addEventListener("click", () => {
     if(startupSound){
@@ -156,12 +202,15 @@ if(enterButton){
 
     AudioSystem.transition();
     createSystemFlash();
+    createZoomOverlay();
+
+    document.body.classList.add("system-entering");
 
     setTimeout(() => {
-      const dashboard = document.querySelector("#interface");
+      const reactor = document.querySelector("#visuals");
 
-      if(dashboard){
-        dashboard.scrollIntoView({
+      if(reactor){
+        reactor.scrollIntoView({
           behavior:"smooth",
           block:"center"
         });
@@ -170,12 +219,15 @@ if(enterButton){
 
     setTimeout(() => {
       activateDashboard();
-    }, 1200);
+      activateReactor();
+      document.body.classList.remove("system-entering");
+      document.body.classList.add("system-entered");
+    }, 1400);
   });
 }
 
 /* SCROLL REVEAL ACTIVATION */
-const revealItems = document.querySelectorAll(".system-panel, .os-module, .floating-card");
+const revealItems = document.querySelectorAll(".system-panel, .os-module, .floating-card, .reactor-section, .contact-panel");
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -214,7 +266,7 @@ document.querySelectorAll("button").forEach((button) => {
 
 /* RANDOM MICRO FLASHES */
 setInterval(() => {
-  const cards = document.querySelectorAll(".floating-card, .os-module");
+  const cards = document.querySelectorAll(".floating-card, .os-module, .hud-chip");
 
   if(cards.length){
     const randomCard = cards[Math.floor(Math.random() * cards.length)];
