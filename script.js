@@ -11,11 +11,7 @@ window.addEventListener("load", () => {
     <div class="halo-intro-content">
       <h1 class="halo-intro-title">HALOVECTOR</h1>
       <p class="halo-intro-subtitle">SYSTEMS STANDBY</p>
-
-      <button class="halo-power-btn" id="haloPowerBtn">
-        POWER ON
-      </button>
-
+      <button class="halo-power-btn" id="haloPowerBtn">POWER ON</button>
       <div class="halo-intro-line"></div>
     </div>
   `;
@@ -178,7 +174,9 @@ function startAuthenticationSequence(){
 }
 
 /* BUTTON + LINK SOUNDS */
-const interactiveItems = document.querySelectorAll("button, nav a, .os-module, .floating-card, .terminal-frame");
+const interactiveItems = document.querySelectorAll(
+  "button, nav a, .os-module, .floating-card, .terminal-frame, .command-module"
+);
 
 interactiveItems.forEach((item) => {
   item.addEventListener("mouseenter", () => {
@@ -282,6 +280,81 @@ function activateTerminal(){
     streamTerminalLog();
   }, 2200);
 }
+
+/* COMMAND CENTER INTERACTION */
+function openCommandModule(module){
+  const moduleTitle = module.querySelector("h3")?.textContent || "SYSTEM MODULE";
+  const moduleLabel = module.querySelector(".module-top p")?.textContent || "HALOVECTOR";
+
+  const overlay = document.createElement("div");
+  overlay.className = "command-access-overlay";
+
+  overlay.innerHTML = `
+    <div class="command-access-box">
+      <p class="command-access-kicker">${moduleLabel}</p>
+      <h2>ACCESSING MODULE</h2>
+      <h3>${moduleTitle}</h3>
+
+      <div class="command-access-bar">
+        <div class="command-access-fill"></div>
+      </div>
+
+      <p class="command-access-status">LINKING TO HALOVECTOR CORE...</p>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    overlay.classList.add("command-access-active");
+  }, 20);
+
+  const fill = overlay.querySelector(".command-access-fill");
+  const status = overlay.querySelector(".command-access-status");
+
+  let progress = 0;
+
+  const statuses = [
+    "LINKING TO HALOVECTOR CORE...",
+    "SYNCING MODULE DATA...",
+    "VERIFYING COMMAND PATHWAY...",
+    "STREAMING LIVE TELEMETRY...",
+    "MODULE ACCESS GRANTED."
+  ];
+
+  const interval = setInterval(() => {
+    progress += 20;
+
+    fill.style.width = progress + "%";
+
+    const statusIndex = Math.min(Math.floor(progress / 25), statuses.length - 1);
+    status.textContent = statuses[statusIndex];
+
+    if(progress >= 100){
+      clearInterval(interval);
+      AudioSystem.transition();
+
+      setTimeout(() => {
+        overlay.style.opacity = "0";
+
+        setTimeout(() => {
+          overlay.remove();
+        }, 650);
+      }, 900);
+    }
+  }, 260);
+}
+
+document.querySelectorAll(".command-module").forEach((module) => {
+  module.addEventListener("click", () => {
+    module.classList.add("command-module-active");
+    openCommandModule(module);
+
+    setTimeout(() => {
+      module.classList.remove("command-module-active");
+    }, 1200);
+  });
+});
 
 /* ENTER SYSTEM CINEMATIC REACTOR ACTIVATION */
 const enterButton = document.querySelector(".primary-btn");
@@ -419,7 +492,9 @@ if(terminalSection){
 }
 
 /* SCROLL REVEAL ACTIVATION */
-const revealItems = document.querySelectorAll(".system-panel, .os-module, .floating-card, .ai-terminal-section, .terminal-frame, .reactor-section, .contact-panel");
+const revealItems = document.querySelectorAll(
+  ".system-panel, .os-module, .floating-card, .ai-terminal-section, .terminal-frame, .command-center-section, .command-module, .reactor-section, .contact-panel"
+);
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -458,7 +533,9 @@ document.querySelectorAll("button").forEach((button) => {
 
 /* RANDOM MICRO FLASHES */
 setInterval(() => {
-  const cards = document.querySelectorAll(".floating-card, .os-module, .hud-chip, .terminal-frame");
+  const cards = document.querySelectorAll(
+    ".floating-card, .os-module, .hud-chip, .terminal-frame, .command-module"
+  );
 
   if(cards.length){
     const randomCard = cards[Math.floor(Math.random() * cards.length)];
