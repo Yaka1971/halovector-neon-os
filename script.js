@@ -281,6 +281,82 @@ function activateTerminal(){
   }, 2200);
 }
 
+/* VISUAL IMMERSION MODE */
+function openVisualImmersionMode(){
+  const overlay = document.createElement("div");
+  overlay.className = "visual-mode-overlay";
+
+  overlay.innerHTML = `
+    <button class="visual-close-btn" aria-label="Close visual mode">×</button>
+
+    <div class="visual-mode-grid"></div>
+    <div class="visual-mode-scan"></div>
+
+    <div class="visual-mode-core">
+      <div class="visual-ring visual-ring-one"></div>
+      <div class="visual-ring visual-ring-two"></div>
+      <div class="visual-ring visual-ring-three"></div>
+      <div class="visual-orb"></div>
+    </div>
+
+    <div class="visual-mode-content">
+      <p>HALOVECTOR VISUAL IMMERSION MODE</p>
+      <h2>HOLOGRAPHIC VISUAL ENGINE</h2>
+      <span>RENDERING CINEMATIC NEON FIELD...</span>
+    </div>
+
+    <div class="visual-hud visual-hud-one">GRID SYNC: 99%</div>
+    <div class="visual-hud visual-hud-two">LIGHT FIELD: ACTIVE</div>
+    <div class="visual-hud visual-hud-three">DEPTH SCAN: ONLINE</div>
+    <div class="visual-hud visual-hud-four">VISUAL CORE: STABLE</div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.classList.add("visual-mode-open");
+
+  AudioSystem.transition();
+  createSystemFlash();
+
+  setTimeout(() => {
+    overlay.classList.add("visual-mode-active");
+  }, 20);
+
+  const closeBtn = overlay.querySelector(".visual-close-btn");
+
+  function closeVisualMode(){
+    overlay.classList.remove("visual-mode-active");
+    overlay.style.opacity = "0";
+    document.body.classList.remove("visual-mode-open");
+
+    setTimeout(() => {
+      overlay.remove();
+    }, 700);
+  }
+
+  closeBtn.addEventListener("click", closeVisualMode);
+
+  overlay.addEventListener("click", (e) => {
+    if(e.target === overlay){
+      closeVisualMode();
+    }
+  });
+
+  document.addEventListener("keydown", function escClose(e){
+    if(e.key === "Escape"){
+      closeVisualMode();
+      document.removeEventListener("keydown", escClose);
+    }
+  });
+}
+
+const exploreVisualsButton = document.querySelector(".secondary-btn");
+
+if(exploreVisualsButton){
+  exploreVisualsButton.addEventListener("click", () => {
+    openVisualImmersionMode();
+  });
+}
+
 /* COMMAND CENTER INTERACTION */
 function openCommandModule(module){
   const moduleTitle = module.querySelector("h3")?.textContent || "SYSTEM MODULE";
