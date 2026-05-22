@@ -285,7 +285,37 @@
 <audio id="introVoice" preload="auto">
   <source src="audio/halo-vector-system-initiated.mp3" type="audio/mpeg">
 </audio>
+<!-- HALOVECTOR AI ORB ASSISTANT -->
+<div class="ai-orb-assistant" id="aiOrbAssistant">
+  <button class="ai-orb-button" id="aiOrbButton" aria-label="Open AI Assistant">
+    <span class="orb-glow"></span>
+    <span class="orb-ring ring-one"></span>
+    <span class="orb-ring ring-two"></span>
+    <span class="orb-core">
+      <span class="orb-eye"></span>
+    </span>
+  </button>
 
+  <div class="ai-orb-hud" id="aiOrbHud">
+    <div class="ai-hud-header">
+      <span class="ai-status-dot"></span>
+      <span>HALOVECTOR AI</span>
+    </div>
+
+    <div class="ai-hud-body">
+      <p class="ai-hud-title">Ambient Intelligence Online</p>
+      <p class="ai-hud-diagnostic" id="aiDiagnosticText">
+        Scanning visual systems...
+      </p>
+    </div>
+
+    <div class="ai-hud-bars">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</div>
 <script src="script.js"></script>
 
 </body>
