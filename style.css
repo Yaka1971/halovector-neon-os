@@ -2581,3 +2581,142 @@ button{
   }
 
 }
+/* =========================
+   COMMAND MODULE ACCESS OVERLAY
+========================= */
+
+.command-module-active{
+  animation:commandModulePulse 1.2s ease forwards;
+}
+
+@keyframes commandModulePulse{
+  0%{
+    transform:scale(1);
+    filter:brightness(1);
+  }
+
+  40%{
+    transform:scale(1.04);
+    filter:brightness(1.5);
+  }
+
+  100%{
+    transform:scale(1);
+    filter:brightness(1);
+  }
+}
+
+.command-access-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  opacity:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at center, rgba(0,229,255,.16), rgba(3,0,15,.96));
+  backdrop-filter:blur(18px);
+  transition:opacity .35s ease;
+}
+
+.command-access-active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.command-access-box{
+  width:min(680px,100%);
+  border-radius:34px;
+  padding:54px;
+  text-align:center;
+  overflow:hidden;
+  position:relative;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  border:1px solid rgba(0,229,255,.24);
+  box-shadow:
+    0 0 70px rgba(0,229,255,.18),
+    0 0 130px rgba(138,46,255,.12),
+    inset 0 0 34px rgba(255,255,255,.04);
+}
+
+.command-access-box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:100% 5px;
+  animation:scanLines 4s linear infinite;
+  pointer-events:none;
+}
+
+.command-access-kicker{
+  font-size:12px;
+  letter-spacing:5px;
+  color:#00e5ff;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+
+.command-access-box h2{
+  font-size:clamp(2rem,5vw,4.5rem);
+  line-height:.95;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+  background:linear-gradient(90deg,#00e5ff,#8a2eff,#ff0055);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.command-access-box h3{
+  font-size:18px;
+  letter-spacing:4px;
+  color:rgba(255,255,255,.75);
+  text-transform:uppercase;
+  margin-bottom:38px;
+}
+
+.command-access-bar{
+  width:100%;
+  height:14px;
+  border-radius:40px;
+  background:rgba(255,255,255,.08);
+  overflow:hidden;
+  margin-bottom:26px;
+}
+
+.command-access-fill{
+  width:0%;
+  height:100%;
+  border-radius:40px;
+  background:linear-gradient(90deg,#00e5ff,#8a2eff,#ff0055);
+  box-shadow:0 0 25px rgba(0,229,255,.55);
+  transition:width .25s ease;
+}
+
+.command-access-status{
+  font-size:13px;
+  letter-spacing:3px;
+  color:#00e5ff;
+  text-transform:uppercase;
+}
+
+@media(max-width:700px){
+  .command-access-box{
+    padding:42px 22px;
+  }
+
+  .command-access-box h2{
+    font-size:2rem;
+    letter-spacing:2px;
+  }
+
+  .command-access-box h3{
+    font-size:13px;
+    letter-spacing:2px;
+  }
+}
