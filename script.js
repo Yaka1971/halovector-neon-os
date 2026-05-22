@@ -29,7 +29,7 @@ const AudioSystem = (() => {
     oscillator.type = type;
     oscillator.frequency.value = freq;
 
-    gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+    gain.gain.setValueAtTime(volume * 0.6, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
 
     oscillator.connect(gain);
@@ -50,23 +50,19 @@ const AudioSystem = (() => {
     },
 
     boot(){
-      tone(180, 0.18, "sine", 0.018);
+      tone(220, 0.22, "sine", 0.012);
 
       setTimeout(() => {
-        tone(240, 0.16, "triangle", 0.02);
+        tone(330, 0.24, "sine", 0.014);
       }, 180);
 
       setTimeout(() => {
-        tone(320, 0.18, "sine", 0.022);
-      }, 360);
+        tone(440, 0.28, "triangle", 0.016);
+      }, 420);
 
       setTimeout(() => {
-        tone(480, 0.22, "triangle", 0.02);
-      }, 580);
-
-      setTimeout(() => {
-        tone(720, 0.25, "sine", 0.018);
-      }, 820);
+        tone(660, 0.35, "sine", 0.014);
+      }, 720);
     },
 
     activate(){
