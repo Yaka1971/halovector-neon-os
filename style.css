@@ -171,11 +171,15 @@ nav a:hover::after{
 }
 
 .hero h1{
-  font-size:clamp(4rem,10vw,9rem);
+  font-size:clamp(3.5rem,8vw,8rem);
   line-height:.88;
   font-weight:900;
   margin-bottom:35px;
   text-transform:uppercase;
+  max-width:900px;
+  word-break:break-word;
+  overflow-wrap:break-word;
+
   background:linear-gradient(90deg,#00e5ff,#8a2eff,#ff0055);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
