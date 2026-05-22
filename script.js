@@ -2,7 +2,6 @@ console.log("HALOVECTOR Neon OS Initialized");
 
 /* HALOVECTOR FLASH INTRO WITH POWER BUTTON */
 window.addEventListener("load", () => {
-
   const introVoice = document.getElementById("introVoice");
 
   const intro = document.createElement("div");
@@ -10,19 +9,14 @@ window.addEventListener("load", () => {
 
   intro.innerHTML = `
     <div class="halo-intro-content">
-
       <h1 class="halo-intro-title">HALOVECTOR</h1>
-
-      <p class="halo-intro-subtitle">
-        SYSTEMS STANDBY
-      </p>
+      <p class="halo-intro-subtitle">SYSTEMS STANDBY</p>
 
       <button class="halo-power-btn" id="haloPowerBtn">
         POWER ON
       </button>
 
       <div class="halo-intro-line"></div>
-
     </div>
   `;
 
@@ -31,9 +25,7 @@ window.addEventListener("load", () => {
   const powerBtn = document.getElementById("haloPowerBtn");
 
   if(powerBtn){
-
     powerBtn.addEventListener("click", () => {
-
       const subtitle = intro.querySelector(".halo-intro-subtitle");
 
       if(subtitle){
@@ -43,15 +35,11 @@ window.addEventListener("load", () => {
       powerBtn.textContent = "INITIALIZING...";
       powerBtn.classList.add("halo-power-active");
 
-      /* PLAY INTRO VOICE */
       if(introVoice){
         introVoice.volume = 1;
         introVoice.currentTime = 0;
         introVoice.play();
       }
-
-      /* SYNTH TRANSITION SOUND */
-      AudioSystem.transition();
 
       setTimeout(() => {
         intro.classList.add("halo-intro-exit");
@@ -59,12 +47,10 @@ window.addEventListener("load", () => {
 
       setTimeout(() => {
         intro.remove();
+        startAuthenticationSequence();
       }, 3700);
-
     });
-
   }
-
 });
 
 /* CURSOR GLOW */
@@ -77,7 +63,7 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
-/* SYNTH COMPUTER SOUNDS - FOR CLICK / HOVER ONLY */
+/* SYNTH COMPUTER SOUNDS */
 const AudioSystem = (() => {
   let audioCtx;
 
@@ -122,11 +108,74 @@ const AudioSystem = (() => {
       setTimeout(() => tone(1040, 0.1, "sine", 0.012), 180);
     },
 
-    activate(){
-      /* Silent to prevent unwanted clunk sounds */
-    }
+    activate(){}
   };
 })();
+
+/* AI AUTHENTICATION SYSTEM */
+function startAuthenticationSequence(){
+  const authOverlay = document.createElement("div");
+  authOverlay.className = "auth-overlay";
+
+  authOverlay.innerHTML = `
+    <div class="auth-box">
+      <h2 class="auth-title">AI AUTHENTICATION</h2>
+      <p class="auth-status">VERIFYING USER ACCESS</p>
+
+      <div class="auth-progress-wrap">
+        <div class="auth-progress"></div>
+      </div>
+
+      <div class="auth-percent">0%</div>
+
+      <div class="auth-lines">
+        <p><span>[SCAN]</span> Initializing neural scan...</p>
+        <p><span>[AI]</span> Verifying cinematic interface permissions...</p>
+        <p><span>[CORE]</span> Linking reactor synchronization...</p>
+        <p><span>[SECURITY]</span> Establishing encrypted access...</p>
+      </div>
+
+      <div class="auth-granted">ACCESS GRANTED</div>
+    </div>
+  `;
+
+  document.body.appendChild(authOverlay);
+
+  setTimeout(() => {
+    authOverlay.classList.add("auth-overlay-active");
+  }, 20);
+
+  const progressBar = authOverlay.querySelector(".auth-progress");
+  const percentText = authOverlay.querySelector(".auth-percent");
+  const granted = authOverlay.querySelector(".auth-granted");
+
+  let progress = 0;
+
+  const authInterval = setInterval(() => {
+    progress += Math.floor(Math.random() * 12) + 4;
+
+    if(progress > 100){
+      progress = 100;
+    }
+
+    progressBar.style.width = progress + "%";
+    percentText.textContent = progress + "%";
+
+    if(progress >= 100){
+      clearInterval(authInterval);
+      granted.classList.add("auth-granted-active");
+      AudioSystem.transition();
+
+      setTimeout(() => {
+        authOverlay.style.opacity = "0";
+
+        setTimeout(() => {
+          authOverlay.remove();
+        }, 900);
+      }, 1600);
+    }
+  }, 180);
+}
 
 /* BUTTON + LINK SOUNDS */
 const interactiveItems = document.querySelectorAll("button, nav a, .os-module, .floating-card, .terminal-frame");
@@ -149,35 +198,6 @@ interactiveItems.forEach((item) => {
       item.classList.remove("interface-click");
     }, 350);
   });
-});
-
-/* BOOT SEQUENCE - VISUAL ONLY */
-window.addEventListener("load", () => {
-  const bootScreen = document.createElement("div");
-  bootScreen.className = "boot-screen";
-
-  bootScreen.innerHTML = `
-    <div class="boot-box">
-      <h2>HALOVECTOR OS</h2>
-      <p class="boot-line">INITIALIZING CINEMATIC INTERFACE...</p>
-      <p class="boot-line">LOADING VISUAL ENGINE...</p>
-      <p class="boot-line">CONNECTING NEURAL LINK...</p>
-      <p class="boot-line">SYSTEM ONLINE</p>
-      <div class="boot-bar">
-        <div class="boot-fill"></div>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(bootScreen);
-
-  setTimeout(() => {
-    bootScreen.classList.add("boot-exit");
-  }, 2600);
-
-  setTimeout(() => {
-    bootScreen.remove();
-  }, 3400);
 });
 
 /* LIVE AI TERMINAL ENGINE */
@@ -207,7 +227,6 @@ const terminalLogs = document.querySelector(".terminal-logs");
 let terminalMessageIndex = 0;
 let terminalLetterIndex = 0;
 let terminalActivated = false;
-let terminalLogInterval = null;
 
 function typeTerminalMessage(){
   if(!typingText) return;
@@ -239,7 +258,6 @@ function streamTerminalLog(){
   const logMessage = randomLog.slice(splitPoint + 1);
 
   newLog.innerHTML = `<span>${logTag}</span>${logMessage}`;
-
   terminalLogs.appendChild(newLog);
 
   if(terminalLogs.children.length > 8){
@@ -260,7 +278,7 @@ function activateTerminal(){
 
   typeTerminalMessage();
 
-  terminalLogInterval = setInterval(() => {
+  setInterval(() => {
     streamTerminalLog();
   }, 2200);
 }
