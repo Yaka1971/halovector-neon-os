@@ -62,7 +62,7 @@ const AudioSystem = (() => {
 })();
 
 /* BUTTON + LINK SOUNDS */
-const interactiveItems = document.querySelectorAll("button, nav a, .os-module, .floating-card");
+const interactiveItems = document.querySelectorAll("button, nav a, .os-module, .floating-card, .terminal-frame");
 
 interactiveItems.forEach((item) => {
   item.addEventListener("mouseenter", () => {
@@ -112,6 +112,85 @@ window.addEventListener("load", () => {
     bootScreen.remove();
   }, 3400);
 });
+
+/* LIVE AI TERMINAL ENGINE */
+const terminalMessages = [
+  "BOOTING HALOVECTOR AI CORE...",
+  "SYNCING NEURAL VISUAL ENGINE...",
+  "CALIBRATING HOLOGRAPHIC OVERLAYS...",
+  "STREAMING CYBERNETIC TELEMETRY...",
+  "SCANNING REACTOR ENERGY OUTPUT...",
+  "COMMAND CENTER INTERFACE ONLINE."
+];
+
+const terminalLogMessages = [
+  "[AI] Live neural pathway stabilized.",
+  "[CORE] Reactor pulse synchronized.",
+  "[SCAN] Neon grid frequency calibrated.",
+  "[HUD] Holographic overlays rendering.",
+  "[DATA] Telemetry stream refreshed.",
+  "[SECURITY] Interface shield active.",
+  "[VISUAL] Cinematic motion field online.",
+  "[STATUS] HALOVECTOR system integrity confirmed."
+];
+
+const typingText = document.getElementById("typingText");
+const terminalLogs = document.querySelector(".terminal-logs");
+
+let terminalMessageIndex = 0;
+let terminalLetterIndex = 0;
+
+function typeTerminalMessage(){
+  if(!typingText) return;
+
+  const currentMessage = terminalMessages[terminalMessageIndex];
+
+  if(terminalLetterIndex < currentMessage.length){
+    typingText.textContent += currentMessage.charAt(terminalLetterIndex);
+    terminalLetterIndex++;
+    setTimeout(typeTerminalMessage, 55);
+  } else {
+    setTimeout(() => {
+      typingText.textContent = "";
+      terminalLetterIndex = 0;
+      terminalMessageIndex = (terminalMessageIndex + 1) % terminalMessages.length;
+      typeTerminalMessage();
+    }, 1700);
+  }
+}
+
+function streamTerminalLog(){
+  if(!terminalLogs) return;
+
+  const newLog = document.createElement("p");
+  const randomLog = terminalLogMessages[Math.floor(Math.random() * terminalLogMessages.length)];
+
+  const splitPoint = randomLog.indexOf("]");
+  const logTag = randomLog.slice(0, splitPoint + 1);
+  const logMessage = randomLog.slice(splitPoint + 1);
+
+  newLog.innerHTML = `<span>${logTag}</span>${logMessage}`;
+
+  terminalLogs.appendChild(newLog);
+
+  if(terminalLogs.children.length > 8){
+    terminalLogs.removeChild(terminalLogs.children[0]);
+  }
+}
+
+function activateTerminal(){
+  const terminal = document.querySelector(".ai-terminal-section");
+
+  if(terminal){
+    terminal.classList.add("terminal-active");
+  }
+
+  typeTerminalMessage();
+
+  setInterval(() => {
+    streamTerminalLog();
+  }, 2200);
+}
 
 /* ENTER SYSTEM CINEMATIC REACTOR ACTIVATION */
 const enterButton = document.querySelector(".primary-btn");
@@ -207,10 +286,10 @@ if(enterButton){
     document.body.classList.add("system-entering");
 
     setTimeout(() => {
-      const reactor = document.querySelector("#visuals");
+      const terminal = document.querySelector("#terminal");
 
-      if(reactor){
-        reactor.scrollIntoView({
+      if(terminal){
+        terminal.scrollIntoView({
           behavior:"smooth",
           block:"center"
         });
@@ -219,15 +298,37 @@ if(enterButton){
 
     setTimeout(() => {
       activateDashboard();
-      activateReactor();
+      activateTerminal();
       document.body.classList.remove("system-entering");
       document.body.classList.add("system-entered");
     }, 1400);
+
+    setTimeout(() => {
+      activateReactor();
+    }, 2200);
   });
 }
 
+/* START TERMINAL WHEN VISIBLE */
+const terminalSection = document.querySelector(".ai-terminal-section");
+
+if(terminalSection){
+  const terminalObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if(entry.isIntersecting){
+        activateTerminal();
+        terminalObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.35
+  });
+
+  terminalObserver.observe(terminalSection);
+}
+
 /* SCROLL REVEAL ACTIVATION */
-const revealItems = document.querySelectorAll(".system-panel, .os-module, .floating-card, .reactor-section, .contact-panel");
+const revealItems = document.querySelectorAll(".system-panel, .os-module, .floating-card, .ai-terminal-section, .terminal-frame, .reactor-section, .contact-panel");
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -266,7 +367,7 @@ document.querySelectorAll("button").forEach((button) => {
 
 /* RANDOM MICRO FLASHES */
 setInterval(() => {
-  const cards = document.querySelectorAll(".floating-card, .os-module, .hud-chip");
+  const cards = document.querySelectorAll(".floating-card, .os-module, .hud-chip, .terminal-frame");
 
   if(cards.length){
     const randomCard = cards[Math.floor(Math.random() * cards.length)];
