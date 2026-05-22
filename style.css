@@ -2046,4 +2046,138 @@ button{
     right:0 !important;
   }
 
+}/* =========================
+   FINAL MOBILE TEXT + WIDTH FIX
+========================= */
+
+@media(max-width:700px){
+
+  body{
+    width:100%;
+    overflow-x:hidden !important;
+  }
+
+  section{
+    width:100% !important;
+    max-width:100% !important;
+    overflow:hidden !important;
+  }
+
+  .navbar{
+    padding:26px 14px !important;
+  }
+
+  .logo{
+    font-size:34px !important;
+    letter-spacing:5px !important;
+    max-width:100% !important;
+    text-align:center !important;
+  }
+
+  nav{
+    width:100% !important;
+    gap:22px !important;
+    row-gap:24px !important;
+  }
+
+  nav a{
+    font-size:14px !important;
+    letter-spacing:4px !important;
+  }
+
+  .hero{
+    padding:300px 28px 70px !important;
+  }
+
+  .hero-content{
+    width:100% !important;
+    max-width:100% !important;
+  }
+
+  .hero-subtitle{
+    font-size:12px !important;
+    letter-spacing:7px !important;
+    line-height:1.8 !important;
+    max-width:100% !important;
+    overflow-wrap:anywhere !important;
+  }
+
+  .hero h1{
+    font-size:3.35rem !important;
+    line-height:.98 !important;
+    letter-spacing:0 !important;
+    max-width:100% !important;
+    overflow-wrap:normal !important;
+    word-break:normal !important;
+  }
+
+  .hero-description{
+    font-size:25px !important;
+    line-height:1.65 !important;
+    max-width:100% !important;
+  }
+
+  .contact-panel{
+    margin:90px 16px !important;
+    padding:58px 20px !important;
+    width:auto !important;
+    max-width:calc(100% - 32px) !important;
+  }
+
+  .contact-panel h2{
+    font-size:2.75rem !important;
+    line-height:1.08 !important;
+    letter-spacing:10px !important;
+    max-width:100% !important;
+    overflow-wrap:anywhere !important;
+    word-break:normal !important;
+  }
+
+  .contact-panel p{
+    font-size:21px !important;
+    line-height:1.75 !important;
+  }
+
+  .primary-btn,
+  .secondary-btn{
+    width:100% !important;
+    max-width:100% !important;
+    padding:20px 20px !important;
+    font-size:13px !important;
+    letter-spacing:5px !important;
+  }
+
+  .reactor-content h2{
+    font-size:2.5rem !important;
+    letter-spacing:3px !important;
+    overflow-wrap:anywhere !important;
+  }
+
+  .reactor-core{
+    width:260px !important;
+    height:260px !important;
+    max-width:260px !important;
+    min-width:260px !important;
+  }
+
+  .ring-one{
+    width:140px !important;
+    height:140px !important;
+  }
+
+  .ring-two{
+    width:205px !important;
+    height:205px !important;
+  }
+
+  .ring-three{
+    width:255px !important;
+    height:255px !important;
+  }
+
+  .reactor-orb{
+    width:95px !important;
+    height:95px !important;
+  }
+
 }
