@@ -1464,4 +1464,193 @@ button{
     line-height:1.6;
   }
 
+}/* =========================
+   HALOVECTOR FLASH INTRO
+========================= */
+
+.halo-intro{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at center, rgba(0,229,255,.18), transparent 36%),
+    linear-gradient(135deg,#02030a,#060018,#02030a);
+}
+
+.halo-intro::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,.08) 1px, transparent 1px);
+  background-size:100% 6px, 70px 70px;
+  animation:introGridMove 3s linear infinite;
+}
+
+.halo-intro::after{
+  content:"";
+  position:absolute;
+  width:160%;
+  height:220px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0,229,255,.08),
+      rgba(255,255,255,.55),
+      rgba(255,0,80,.12),
+      transparent
+    );
+  transform:rotate(-18deg) translateX(-120%);
+  filter:blur(10px);
+  animation:introFlashSweep 2.4s ease forwards;
+}
+
+.halo-intro-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:40px;
+}
+
+.halo-intro-title{
+  font-size:clamp(2.7rem,8vw,7.5rem);
+  line-height:.9;
+  letter-spacing:8px;
+  text-transform:uppercase;
+  font-weight:900;
+
+  background:linear-gradient(90deg,#00e5ff,#ffffff,#8a2eff,#ff0055);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:
+    0 0 28px rgba(0,229,255,.55),
+    0 0 70px rgba(138,46,255,.32);
+
+  animation:introTitleGlitch 1.8s ease-in-out infinite;
+}
+
+.halo-intro-subtitle{
+  margin-top:28px;
+  font-size:14px;
+  letter-spacing:6px;
+  color:#00e5ff;
+  text-transform:uppercase;
+  text-shadow:0 0 18px rgba(0,229,255,.8);
+  animation:introSubtitlePulse 1.2s ease-in-out infinite;
+}
+
+.halo-intro-line{
+  width:min(520px,80vw);
+  height:3px;
+  margin:34px auto 0;
+  border-radius:50px;
+  background:linear-gradient(90deg,transparent,#00e5ff,#ff0055,transparent);
+  box-shadow:0 0 24px rgba(0,229,255,.65);
+  animation:introLineLoad 2.2s ease forwards;
+  transform-origin:left;
+}
+
+.halo-intro-exit{
+  animation:introExit .85s ease forwards;
+}
+
+@keyframes introGridMove{
+  from{
+    transform:translateY(0);
+  }
+
+  to{
+    transform:translateY(70px);
+  }
+}
+
+@keyframes introFlashSweep{
+  0%{
+    transform:rotate(-18deg) translateX(-120%);
+    opacity:0;
+  }
+
+  25%{
+    opacity:1;
+  }
+
+  100%{
+    transform:rotate(-18deg) translateX(120%);
+    opacity:0;
+  }
+}
+
+@keyframes introTitleGlitch{
+  0%,100%{
+    transform:translateX(0);
+    filter:brightness(1);
+  }
+
+  20%{
+    transform:translateX(-2px);
+    filter:brightness(1.4);
+  }
+
+  22%{
+    transform:translateX(3px);
+  }
+
+  24%{
+    transform:translateX(0);
+  }
+
+  70%{
+    filter:brightness(1);
+  }
+
+  72%{
+    filter:brightness(1.7);
+  }
+
+  74%{
+    filter:brightness(1);
+  }
+}
+
+@keyframes introSubtitlePulse{
+  0%,100%{
+    opacity:.65;
+  }
+
+  50%{
+    opacity:1;
+  }
+}
+
+@keyframes introLineLoad{
+  from{
+    transform:scaleX(0);
+    opacity:.4;
+  }
+
+  to{
+    transform:scaleX(1);
+    opacity:1;
+  }
+}
+
+@keyframes introExit{
+  0%{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+
+  100%{
+    opacity:0;
+    transform:scale(1.08);
+    filter:blur(18px);
+  }
 }
