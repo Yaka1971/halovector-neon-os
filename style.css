@@ -2180,4 +2180,32 @@ button{
     height:95px !important;
   }
 
+}/* =========================
+   FINAL CONTACT TITLE MOBILE FIX
+========================= */
+
+@media(max-width:700px){
+
+  .contact-panel h2{
+    font-size:2.15rem !important;
+    line-height:1.15 !important;
+    letter-spacing:5px !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+  }
+
+  .contact-panel{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+
+}
+
+@media(max-width:390px){
+
+  .contact-panel h2{
+    font-size:1.9rem !important;
+    letter-spacing:4px !important;
+  }
+
 }
