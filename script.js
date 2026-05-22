@@ -10,7 +10,7 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
-/* SYNTH COMPUTER SOUNDS - NO AUDIO FILES NEEDED */
+/* SYNTH COMPUTER SOUNDS - FOR CLICK / HOVER ONLY */
 const AudioSystem = (() => {
   let audioCtx;
 
@@ -29,7 +29,7 @@ const AudioSystem = (() => {
     oscillator.type = type;
     oscillator.frequency.value = freq;
 
-    gain.gain.setValueAtTime(volume * 0.6, audioCtx.currentTime);
+    gain.gain.setValueAtTime(volume * 0.45, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
 
     oscillator.connect(gain);
@@ -41,33 +41,17 @@ const AudioSystem = (() => {
 
   return {
     click(){
-      tone(620, 0.05, "triangle", 0.025);
-      setTimeout(() => tone(920, 0.05, "sine", 0.02), 45);
+      tone(620, 0.05, "triangle", 0.02);
+      setTimeout(() => tone(920, 0.05, "sine", 0.015), 45);
     },
 
     hover(){
-      tone(520, 0.035, "sine", 0.012);
-    },
-
-    boot(){
-      tone(220, 0.22, "sine", 0.012);
-
-      setTimeout(() => {
-        tone(330, 0.24, "sine", 0.014);
-      }, 180);
-
-      setTimeout(() => {
-        tone(440, 0.28, "triangle", 0.016);
-      }, 420);
-
-      setTimeout(() => {
-        tone(660, 0.35, "sine", 0.014);
-      }, 720);
+      tone(520, 0.035, "sine", 0.01);
     },
 
     activate(){
-      tone(700, 0.07, "triangle", 0.018);
-      setTimeout(() => tone(980, 0.07, "sine", 0.014), 90);
+      tone(700, 0.07, "triangle", 0.014);
+      setTimeout(() => tone(980, 0.07, "sine", 0.01), 90);
     }
   };
 })();
@@ -97,7 +81,15 @@ interactiveItems.forEach((item) => {
 
 /* BOOT SEQUENCE */
 window.addEventListener("load", () => {
-  AudioSystem.boot();
+  const startupSound = document.getElementById("startupSound");
+
+  if(startupSound){
+    startupSound.volume = 0.35;
+    startupSound.currentTime = 0;
+    startupSound.play().catch(() => {
+      console.log("Startup sound waiting for user interaction.");
+    });
+  }
 
   const bootScreen = document.createElement("div");
   bootScreen.className = "boot-screen";
