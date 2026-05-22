@@ -2277,3 +2277,33 @@ button{
   }
 
 }
+/* =========================
+   HARD FIX AUTH MOBILE TITLE
+========================= */
+
+@media(max-width:700px){
+
+  .auth-box{
+    width:calc(100vw - 28px) !important;
+    padding:44px 18px !important;
+  }
+
+  .auth-title{
+    font-size:1.9rem !important;
+    line-height:1.15 !important;
+    letter-spacing:3px !important;
+    max-width:100% !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+  }
+
+}
+
+@media(max-width:390px){
+
+  .auth-title{
+    font-size:1.55rem !important;
+    letter-spacing:2px !important;
+  }
+
+}
