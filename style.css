@@ -1,0 +1,45 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#050505;
+  color:white;
+  font-family:Arial, sans-serif;
+  overflow-x:hidden;
+}
+
+h1{
+  font-size:5rem;
+  text-align:center;
+  margin-top:40vh;
+  letter-spacing:8px;
+  text-transform:uppercase;
+
+  background:linear-gradient(
+    90deg,
+    #00e5ff,
+    #ff003c,
+    #8a2eff,
+    #00e5ff
+  );
+
+  background-size:300%;
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation:glowShift 8s linear infinite;
+}
+
+@keyframes glowShift{
+  0%{
+    background-position:0%;
+  }
+
+  100%{
+    background-position:300%;
+  }
+}
