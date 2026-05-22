@@ -21,6 +21,7 @@
     <a href="#system">System</a>
     <a href="#interface">Interface</a>
     <a href="#terminal">AI Terminal</a>
+    <a href="#command">Command</a>
     <a href="#visuals">Visuals</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -48,23 +49,18 @@
   <div class="floating-card card-one">
     <span class="panel-label">SYSTEM STATUS</span>
     <h3>ONLINE</h3>
-
-    <div class="status-bar">
-      <div class="status-fill"></div>
-    </div>
+    <div class="status-bar"><div class="status-fill"></div></div>
   </div>
 
   <div class="floating-card card-two">
     <span class="panel-label">VISUAL ENGINE</span>
     <h3>ACTIVE</h3>
-
     <div class="small-grid"></div>
   </div>
 
   <div class="floating-card card-three">
     <span class="panel-label">NEURAL LINK</span>
     <h3>CONNECTED</h3>
-
     <div class="pulse-circle"></div>
   </div>
 
@@ -80,13 +76,8 @@
         Real-time cinematic rendering system operating
         through layered holographic interface logic.
       </p>
-
       <div class="data-bars">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
     </div>
 
@@ -96,7 +87,6 @@
         Signal flow stabilized across visual channels,
         motion layers, and interactive neon response fields.
       </p>
-
       <div class="neon-line"></div>
     </div>
 
@@ -106,7 +96,6 @@
         Energy core synchronized with the HALOVECTOR
         cinematic operating grid.
       </p>
-
       <div class="loading-ring"></div>
     </div>
 
@@ -129,12 +118,10 @@
       </div>
 
       <p>HALOVECTOR // LIVE AI TERMINAL</p>
-
       <span class="terminal-status">ACTIVE</span>
     </div>
 
     <div class="terminal-body">
-
       <div class="terminal-command">
         <span class="terminal-prompt">HALO://</span>
         <span id="typingText"></span>
@@ -149,7 +136,99 @@
         <p><span>[DATA]</span> Streaming live telemetry channels...</p>
         <p><span>[STATUS]</span> HALOVECTOR command center fully active.</p>
       </div>
+    </div>
 
+  </div>
+
+</section>
+
+<section class="command-center-section" id="command">
+
+  <div class="command-bg-glow"></div>
+
+  <div class="command-header">
+    <p class="section-kicker">TACTICAL COMMAND GRID</p>
+
+    <h2>HOLOGRAPHIC COMMAND CENTER</h2>
+
+    <p>
+      Interactive neural modules connected to the
+      HALOVECTOR cinematic operating infrastructure.
+    </p>
+  </div>
+
+  <div class="command-grid">
+
+    <div class="command-module">
+      <div class="module-top">
+        <span class="module-dot"></span>
+        <p>AI CORE</p>
+      </div>
+
+      <h3>NEURAL INTELLIGENCE</h3>
+
+      <div class="telemetry-bar">
+        <div class="telemetry-fill telemetry-one"></div>
+      </div>
+
+      <div class="module-stats">
+        <span>SYNC: 98%</span>
+        <span>STATUS: ONLINE</span>
+      </div>
+    </div>
+
+    <div class="command-module">
+      <div class="module-top">
+        <span class="module-dot"></span>
+        <p>REACTOR GRID</p>
+      </div>
+
+      <h3>ENERGY DISTRIBUTION</h3>
+
+      <div class="telemetry-bar">
+        <div class="telemetry-fill telemetry-two"></div>
+      </div>
+
+      <div class="module-stats">
+        <span>OUTPUT: 92%</span>
+        <span>FLOW: STABLE</span>
+      </div>
+    </div>
+
+    <div class="command-module">
+      <div class="module-top">
+        <span class="module-dot"></span>
+        <p>TELEMETRY</p>
+      </div>
+
+      <h3>LIVE DATA STREAM</h3>
+
+      <div class="telemetry-bar">
+        <div class="telemetry-fill telemetry-three"></div>
+      </div>
+
+      <div class="module-stats">
+        <span>BANDWIDTH: 88%</span>
+        <span>UPLINK: ACTIVE</span>
+      </div>
+    </div>
+
+    <div class="command-module">
+      <div class="module-top">
+        <span class="module-dot"></span>
+        <p>DEFENSE GRID</p>
+      </div>
+
+      <h3>SECURITY SHIELD</h3>
+
+      <div class="telemetry-bar">
+        <div class="telemetry-fill telemetry-four"></div>
+      </div>
+
+      <div class="module-stats">
+        <span>SHIELD: 100%</span>
+        <span>THREATS: NONE</span>
+      </div>
     </div>
 
   </div>
@@ -159,7 +238,6 @@
 <section class="reactor-section" id="visuals">
 
   <div class="reactor-content">
-
     <p class="section-kicker">LIVE ENERGY CORE</p>
 
     <h2>REACTOR CHAMBER</h2>
@@ -168,11 +246,9 @@
       A cinematic power center built with pulsing neon energy,
       holographic telemetry, rotating rings, and live HUD motion.
     </p>
-
   </div>
 
   <div class="reactor-core">
-
     <div class="reactor-ring ring-one"></div>
     <div class="reactor-ring ring-two"></div>
     <div class="reactor-ring ring-three"></div>
@@ -183,7 +259,6 @@
     <div class="hud-chip chip-two">SIGNAL 98.2%</div>
     <div class="hud-chip chip-three">LATENCY 0.2MS</div>
     <div class="hud-chip chip-four">NEURAL LINK ACTIVE</div>
-
   </div>
 
 </section>
@@ -206,9 +281,11 @@
 <audio id="startupSound" preload="auto">
   <source src="audio/computer-startup.mp3" type="audio/mpeg">
 </audio>
+
 <audio id="introVoice" preload="auto">
   <source src="audio/halo-vector-system-initiated.mp3" type="audio/mpeg">
 </audio>
+
 <script src="script.js"></script>
 
 </body>
