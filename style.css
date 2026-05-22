@@ -2307,3 +2307,23 @@ button{
   }
 
 }
+/* =========================
+   FINAL AUTH TITLE DESKTOP + MOBILE FIX
+========================= */
+
+.auth-title{
+  font-size:clamp(1.8rem,3.8vw,3.45rem) !important;
+  letter-spacing:3px !important;
+  line-height:1.08 !important;
+  max-width:100% !important;
+  overflow-wrap:normal !important;
+  word-break:normal !important;
+  white-space:normal !important;
+}
+
+@media(max-width:700px){
+  .auth-title{
+    font-size:1.65rem !important;
+    letter-spacing:2px !important;
+  }
+}
