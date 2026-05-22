@@ -10,38 +10,27 @@
 </head>
 
 <body>
-<body>
 
 <div class="animated-grid"></div>
-
 <div class="cursor-glow"></div>
 
 <header class="navbar">
-
-  <div class="logo">
-    HALOVECTOR
-  </div>
+  <div class="logo">HALOVECTOR</div>
 
   <nav>
-    <a href="#">System</a>
-    <a href="#">Interface</a>
-    <a href="#">Visuals</a>
-    <a href="#">Contact</a>
+    <a href="#system">System</a>
+    <a href="#interface">Interface</a>
+    <a href="#visuals">Visuals</a>
+    <a href="#contact">Contact</a>
   </nav>
-
 </header>
 
-<section class="hero">
+<section class="hero" id="system">
 
   <div class="hero-content">
+    <p class="hero-subtitle">HALOVECTOR CINEMATIC STUDIOS</p>
 
-    <p class="hero-subtitle">
-      HALOVECTOR CINEMATIC STUDIOS
-    </p>
-
-    <h1>
-      NEON OPERATING SYSTEM
-    </h1>
+    <h1>NEON OPERATING SYSTEM</h1>
 
     <p class="hero-description">
       A futuristic holographic interface experience
@@ -50,69 +39,81 @@
     </p>
 
     <div class="hero-buttons">
+      <button class="primary-btn">ENTER SYSTEM</button>
+      <button class="secondary-btn">EXPLORE VISUALS</button>
+    </div>
+  </div>
 
-      <button class="primary-btn">
-        ENTER SYSTEM
-      </button>
+  <div class="floating-card card-one">
+    <span class="panel-label">SYSTEM STATUS</span>
+    <h3>ONLINE</h3>
 
-      <button class="secondary-btn">
-        EXPLORE VISUALS
-      </button>
+    <div class="status-bar">
+      <div class="status-fill"></div>
+    </div>
+  </div>
 
+  <div class="floating-card card-two">
+    <span class="panel-label">VISUAL ENGINE</span>
+    <h3>ACTIVE</h3>
+
+    <div class="small-grid"></div>
+  </div>
+
+  <div class="floating-card card-three">
+    <span class="panel-label">NEURAL LINK</span>
+    <h3>CONNECTED</h3>
+
+    <div class="pulse-circle"></div>
+  </div>
+
+</section>
+
+<section class="system-panel" id="interface">
+
+  <div class="module-grid">
+
+    <div class="os-module">
+      <h4>CORE PROCESSOR</h4>
+      <p>
+        Real-time cinematic rendering system operating
+        through layered holographic interface logic.
+      </p>
+
+      <div class="data-bars">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="os-module">
+      <h4>NEURAL BANDWIDTH</h4>
+      <p>
+        Signal flow stabilized across visual channels,
+        motion layers, and interactive neon response fields.
+      </p>
+
+      <div class="neon-line"></div>
+    </div>
+
+    <div class="os-module">
+      <h4>REACTOR SYNC</h4>
+      <p>
+        Energy core synchronized with the HALOVECTOR
+        cinematic operating grid.
+      </p>
+
+      <div class="loading-ring"></div>
     </div>
 
   </div>
 
-  <div class="floating-card card-one">
-
-  <span class="panel-label">
-    SYSTEM STATUS
-  </span>
-
-  <h3>
-    ONLINE
-  </h3>
-
-  <div class="status-bar">
-    <div class="status-fill"></div>
-  </div>
-
-</div>
-
-<div class="floating-card card-two">
-
-  <span class="panel-label">
-    VISUAL ENGINE
-  </span>
-
-  <h3>
-    ACTIVE
-  </h3>
-
-  <div class="small-grid"></div>
-
-</div>
-
-<div class="floating-card card-three">
-
-  <span class="panel-label">
-    NEURAL LINK
-  </span>
-
-  <h3>
-    CONNECTED
-  </h3>
-
-  <div class="pulse-circle"></div>
-
-</div>
-
 </section>
 
 <script src="script.js"></script>
-
-</body>
-
 
 </body>
 </html>
