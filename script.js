@@ -41,23 +41,37 @@ const AudioSystem = (() => {
 
   return {
     click(){
-      tone(620, 0.05, "square", 0.035);
-      setTimeout(() => tone(920, 0.06, "sine", 0.03), 45);
+      tone(620, 0.05, "triangle", 0.025);
+      setTimeout(() => tone(920, 0.05, "sine", 0.02), 45);
     },
 
     hover(){
-      tone(520, 0.04, "sine", 0.018);
+      tone(520, 0.035, "sine", 0.012);
     },
 
     boot(){
-      tone(260, 0.12, "sawtooth", 0.035);
-      setTimeout(() => tone(420, 0.12, "sine", 0.035), 160);
-      setTimeout(() => tone(720, 0.18, "triangle", 0.04), 340);
+      tone(180, 0.18, "sine", 0.018);
+
+      setTimeout(() => {
+        tone(240, 0.16, "triangle", 0.02);
+      }, 180);
+
+      setTimeout(() => {
+        tone(320, 0.18, "sine", 0.022);
+      }, 360);
+
+      setTimeout(() => {
+        tone(480, 0.22, "triangle", 0.02);
+      }, 580);
+
+      setTimeout(() => {
+        tone(720, 0.25, "sine", 0.018);
+      }, 820);
     },
 
     activate(){
-      tone(880, 0.08, "triangle", 0.03);
-      setTimeout(() => tone(1200, 0.08, "sine", 0.025), 90);
+      tone(700, 0.07, "triangle", 0.018);
+      setTimeout(() => tone(980, 0.07, "sine", 0.014), 90);
     }
   };
 })();
