@@ -2209,3 +2209,71 @@ button{
   }
 
 }
+/* =========================
+   HARD MOBILE TITLE FIX
+========================= */
+
+@media(max-width:700px){
+
+  .contact-panel h2{
+    font-size:2rem !important;
+    line-height:1.18 !important;
+    letter-spacing:4px !important;
+    max-width:100% !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+  }
+
+  .contact-panel h2::before{
+    content:"CONNECT TO";
+    display:block;
+  }
+
+  .contact-panel h2{
+    font-size:0 !important;
+  }
+
+  .contact-panel h2::after{
+    content:"HALOVECTOR";
+    display:block;
+    font-size:2rem !important;
+    line-height:1.18 !important;
+    letter-spacing:4px !important;
+    background:linear-gradient(90deg,#00e5ff,#8a2eff,#ff003c);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  .contact-panel h2::before{
+    font-size:2rem !important;
+    line-height:1.18 !important;
+    letter-spacing:4px !important;
+    background:linear-gradient(90deg,#00e5ff,#8a2eff,#ff003c);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  .auth-title{
+    font-size:2rem !important;
+    letter-spacing:4px !important;
+    line-height:1.15 !important;
+    overflow-wrap:normal !important;
+    word-break:normal !important;
+  }
+
+}
+
+@media(max-width:390px){
+
+  .contact-panel h2::before,
+  .contact-panel h2::after{
+    font-size:1.75rem !important;
+    letter-spacing:3px !important;
+  }
+
+  .auth-title{
+    font-size:1.75rem !important;
+    letter-spacing:3px !important;
+  }
+
+}
