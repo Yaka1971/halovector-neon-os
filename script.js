@@ -49,6 +49,12 @@ const AudioSystem = (() => {
       tone(520, 0.035, "sine", 0.01);
     },
 
+    transition(){
+      tone(420, 0.06, "sine", 0.012);
+      setTimeout(() => tone(760, 0.08, "triangle", 0.014), 80);
+      setTimeout(() => tone(1040, 0.1, "sine", 0.012), 180);
+    },
+
     activate(){
       /* Silent for now to prevent clunking startup/scroll sounds */
     }
@@ -107,15 +113,64 @@ window.addEventListener("load", () => {
   }, 3400);
 });
 
-/* STARTUP AUDIO ON ENTER SYSTEM */
+/* ENTER SYSTEM CINEMATIC TRANSITION */
 const enterButton = document.querySelector(".primary-btn");
 const startupSound = document.getElementById("startupSound");
 
-if(enterButton && startupSound){
+function createSystemFlash(){
+  const flash = document.createElement("div");
+  flash.className = "system-flash";
+  document.body.appendChild(flash);
+
+  setTimeout(() => {
+    flash.classList.add("system-flash-active");
+  }, 20);
+
+  setTimeout(() => {
+    flash.remove();
+  }, 1200);
+}
+
+function activateDashboard(){
+  const panel = document.querySelector(".system-panel");
+  const modules = document.querySelectorAll(".os-module");
+
+  if(panel){
+    panel.classList.add("dashboard-powered");
+  }
+
+  modules.forEach((module, index) => {
+    setTimeout(() => {
+      module.classList.add("module-powered");
+    }, index * 180);
+  });
+}
+
+if(enterButton){
   enterButton.addEventListener("click", () => {
-    startupSound.volume = 0.4;
-    startupSound.currentTime = 0;
-    startupSound.play();
+    if(startupSound){
+      startupSound.volume = 0.4;
+      startupSound.currentTime = 0;
+      startupSound.play();
+    }
+
+    AudioSystem.transition();
+    createSystemFlash();
+
+    setTimeout(() => {
+      const dashboard = document.querySelector("#interface");
+
+      if(dashboard){
+        dashboard.scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+      }
+    }, 650);
+
+    setTimeout(() => {
+      activateDashboard();
+    }, 1200);
   });
 }
 
