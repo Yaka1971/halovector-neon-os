@@ -1,7 +1,8 @@
 console.log("HALOVECTOR Neon OS Initialized");
 
-/* HALOVECTOR FLASH INTRO WITH VOICE */
+/* HALOVECTOR FLASH INTRO WITH POWER BUTTON */
 window.addEventListener("load", () => {
+
   const introVoice = document.getElementById("introVoice");
 
   const intro = document.createElement("div");
@@ -9,34 +10,61 @@ window.addEventListener("load", () => {
 
   intro.innerHTML = `
     <div class="halo-intro-content">
+
       <h1 class="halo-intro-title">HALOVECTOR</h1>
-      <p class="halo-intro-subtitle">SYSTEMS INITIATED</p>
+
+      <p class="halo-intro-subtitle">
+        SYSTEMS STANDBY
+      </p>
+
+      <button class="halo-power-btn" id="haloPowerBtn">
+        POWER ON
+      </button>
+
       <div class="halo-intro-line"></div>
+
     </div>
   `;
 
   document.body.appendChild(intro);
 
-  if(introVoice){
-    introVoice.volume = 1;
-    introVoice.currentTime = 0;
+  const powerBtn = document.getElementById("haloPowerBtn");
 
-    const playPromise = introVoice.play();
+  if(powerBtn){
 
-    if(playPromise !== undefined){
-      playPromise.catch(() => {
-        console.log("Intro voice autoplay blocked until user interaction.");
-      });
-    }
+    powerBtn.addEventListener("click", () => {
+
+      const subtitle = intro.querySelector(".halo-intro-subtitle");
+
+      if(subtitle){
+        subtitle.textContent = "SYSTEMS INITIATED";
+      }
+
+      powerBtn.textContent = "INITIALIZING...";
+      powerBtn.classList.add("halo-power-active");
+
+      /* PLAY INTRO VOICE */
+      if(introVoice){
+        introVoice.volume = 1;
+        introVoice.currentTime = 0;
+        introVoice.play();
+      }
+
+      /* SYNTH TRANSITION SOUND */
+      AudioSystem.transition();
+
+      setTimeout(() => {
+        intro.classList.add("halo-intro-exit");
+      }, 2800);
+
+      setTimeout(() => {
+        intro.remove();
+      }, 3700);
+
+    });
+
   }
 
-  setTimeout(() => {
-    intro.classList.add("halo-intro-exit");
-  }, 2800);
-
-  setTimeout(() => {
-    intro.remove();
-  }, 3700);
 });
 
 /* CURSOR GLOW */
