@@ -1,3 +1,6 @@
+Absolutely 🔥 Here is the **complete updated CSS** for the next HALOVECTOR Neon OS phase, built from your uploaded CSS. 
+
+```css
 *{
   margin:0;
   padding:0;
@@ -24,7 +27,7 @@ body{
     linear-gradient(90deg, rgba(255,0,80,.08) 1px, transparent 1px);
   background-size:70px 70px;
   animation:gridMove 18s linear infinite;
-  z-index:-3;
+  z-index:-4;
 }
 
 body::before{
@@ -36,15 +39,19 @@ body::before{
     radial-gradient(circle at 80% 60%, rgba(255,0,80,.3), transparent 28%),
     radial-gradient(circle at 50% 80%, rgba(138,46,255,.3), transparent 35%);
   filter:blur(25px);
-  z-index:-2;
+  z-index:-3;
 }
 
 body::after{
   content:"";
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.45);
-  z-index:-1;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    rgba(0,0,0,.45);
+  background-size:100% 4px;
+  animation:screenFlicker 6s infinite;
+  z-index:-2;
 }
 
 .cursor-glow{
@@ -58,6 +65,8 @@ body::after{
   z-index:1;
 }
 
+/* NAVIGATION */
+
 .navbar{
   position:fixed;
   top:0;
@@ -68,16 +77,21 @@ body::after{
   align-items:center;
   justify-content:space-between;
   z-index:10;
-  backdrop-filter:blur(18px);
-  background:rgba(5,5,15,.35);
-  border-bottom:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(22px);
+  background:linear-gradient(135deg,rgba(5,5,15,.52),rgba(255,255,255,.04));
+  border-bottom:1px solid rgba(0,229,255,.22);
+  box-shadow:
+    0 0 35px rgba(0,229,255,.14),
+    inset 0 -1px 0 rgba(255,255,255,.08);
 }
 
 .logo{
   font-weight:900;
   letter-spacing:5px;
   font-size:18px;
-  text-shadow:0 0 18px #00e5ff;
+  text-shadow:
+    0 0 18px #00e5ff,
+    0 0 32px rgba(0,229,255,.55);
 }
 
 nav{
@@ -86,6 +100,7 @@ nav{
 }
 
 nav a{
+  position:relative;
   color:white;
   text-decoration:none;
   font-size:13px;
@@ -95,11 +110,29 @@ nav a{
   transition:.3s ease;
 }
 
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,#00e5ff,#ff003c);
+  box-shadow:0 0 14px #00e5ff;
+  transition:.3s ease;
+}
+
 nav a:hover{
   opacity:1;
   color:#00e5ff;
   text-shadow:0 0 18px #00e5ff;
 }
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* HERO */
 
 .hero{
   min-height:100vh;
@@ -107,6 +140,32 @@ nav a:hover{
   display:flex;
   align-items:center;
   position:relative;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:12%;
+  border:1px solid rgba(0,229,255,.16);
+  border-radius:40px;
+  pointer-events:none;
+  box-shadow:
+    0 0 60px rgba(0,229,255,.08),
+    inset 0 0 40px rgba(255,255,255,.03);
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  top:-20%;
+  left:-30%;
+  width:70%;
+  height:140%;
+  background:linear-gradient(90deg,transparent,rgba(0,229,255,.08),transparent);
+  transform:rotate(18deg);
+  animation:heroSweep 7s ease-in-out infinite;
+  pointer-events:none;
 }
 
 .hero-content{
@@ -145,6 +204,8 @@ h1{
   margin-bottom:38px;
 }
 
+/* BUTTONS */
+
 .hero-buttons{
   display:flex;
   gap:18px;
@@ -152,6 +213,8 @@ h1{
 }
 
 button{
+  position:relative;
+  overflow:hidden;
   border:none;
   cursor:pointer;
   padding:16px 28px;
@@ -161,6 +224,19 @@ button{
   text-transform:uppercase;
   color:white;
   transition:.3s ease;
+}
+
+button::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:translateX(-120%);
+  transition:.6s ease;
+}
+
+button:hover::before{
+  transform:translateX(120%);
 }
 
 .primary-btn{
@@ -179,6 +255,8 @@ button:hover{
   box-shadow:0 0 45px rgba(255,0,80,.55);
 }
 
+/* HOLOGRAPHIC FLOATING CARDS */
+
 .floating-card{
   position:absolute;
   width:250px;
@@ -189,12 +267,22 @@ button:hover{
     linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.04)),
     radial-gradient(circle at top right, rgba(0,229,255,.18), transparent 45%);
   border:1px solid rgba(255,255,255,.24);
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(24px);
   box-shadow:
     0 0 40px rgba(0,229,255,.25),
     inset 0 0 25px rgba(255,255,255,.05);
   animation:float 6s ease-in-out infinite;
   overflow:hidden;
+  transform-style:preserve-3d;
+}
+
+.floating-card:hover{
+  transform:translateY(-12px) scale(1.04);
+  border-color:rgba(0,229,255,.65);
+  box-shadow:
+    0 0 55px rgba(0,229,255,.45),
+    0 0 85px rgba(255,0,80,.18),
+    inset 0 0 35px rgba(255,255,255,.07);
 }
 
 .floating-card::before{
@@ -306,6 +394,138 @@ button:hover{
     inset 0 0 25px rgba(255,255,255,.05);
 }
 
+/* NEW HALOVECTOR OS MODULES */
+
+.system-panel{
+  position:relative;
+  margin:60px 7%;
+  padding:36px;
+  border-radius:32px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.035)),
+    radial-gradient(circle at 20% 20%,rgba(0,229,255,.15),transparent 35%),
+    radial-gradient(circle at 80% 70%,rgba(255,0,80,.12),transparent 38%);
+  border:1px solid rgba(0,229,255,.25);
+  backdrop-filter:blur(26px);
+  box-shadow:
+    0 0 60px rgba(0,229,255,.18),
+    inset 0 0 35px rgba(255,255,255,.04);
+  overflow:hidden;
+}
+
+.system-panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:100% 6px;
+  animation:scanLines 4s linear infinite;
+  pointer-events:none;
+}
+
+.system-panel::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:32px;
+  background:linear-gradient(120deg,#00e5ff,transparent,#ff003c,transparent,#8a2eff);
+  background-size:300%;
+  z-index:-1;
+  animation:borderFlow 7s linear infinite;
+  opacity:.6;
+}
+
+.module-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+  position:relative;
+  z-index:2;
+}
+
+.os-module{
+  min-height:180px;
+  padding:24px;
+  border-radius:24px;
+  background:rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:
+    inset 0 0 25px rgba(255,255,255,.04),
+    0 0 30px rgba(0,229,255,.09);
+  transition:.35s ease;
+}
+
+.os-module:hover{
+  transform:translateY(-8px);
+  border-color:rgba(0,229,255,.55);
+  box-shadow:
+    0 0 45px rgba(0,229,255,.22),
+    inset 0 0 35px rgba(255,255,255,.06);
+}
+
+.os-module h4{
+  font-size:14px;
+  letter-spacing:3px;
+  color:#00e5ff;
+  text-transform:uppercase;
+  margin-bottom:18px;
+  text-shadow:0 0 14px rgba(0,229,255,.75);
+}
+
+.os-module p{
+  font-size:15px;
+  line-height:1.7;
+  color:rgba(255,255,255,.75);
+}
+
+.data-bars{
+  display:flex;
+  align-items:end;
+  gap:8px;
+  height:80px;
+  margin-top:22px;
+}
+
+.data-bars span{
+  display:block;
+  width:100%;
+  border-radius:999px 999px 4px 4px;
+  background:linear-gradient(to top,#ff003c,#00e5ff);
+  box-shadow:0 0 18px rgba(0,229,255,.65);
+  animation:dataPulse 2s ease-in-out infinite;
+}
+
+.data-bars span:nth-child(1){height:40%; animation-delay:.1s;}
+.data-bars span:nth-child(2){height:70%; animation-delay:.3s;}
+.data-bars span:nth-child(3){height:55%; animation-delay:.5s;}
+.data-bars span:nth-child(4){height:90%; animation-delay:.7s;}
+.data-bars span:nth-child(5){height:62%; animation-delay:.9s;}
+
+.loading-ring{
+  width:74px;
+  height:74px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,.12);
+  border-top-color:#00e5ff;
+  border-right-color:#ff003c;
+  box-shadow:
+    0 0 25px rgba(0,229,255,.45),
+    inset 0 0 20px rgba(255,0,80,.2);
+  animation:spin 1.2s linear infinite;
+}
+
+.neon-line{
+  width:100%;
+  height:2px;
+  margin-top:22px;
+  background:linear-gradient(90deg,transparent,#00e5ff,#ff003c,transparent);
+  box-shadow:0 0 18px rgba(0,229,255,.85);
+  animation:lineGlow 2s ease-in-out infinite;
+}
+
+/* ANIMATIONS */
+
 @keyframes glowShift{
   0%{background-position:0%;}
   100%{background-position:300%;}
@@ -355,6 +575,69 @@ button:hover{
   }
 }
 
+@keyframes screenFlicker{
+  0%,100%{opacity:1;}
+  50%{opacity:.86;}
+  52%{opacity:.96;}
+  54%{opacity:.82;}
+  58%{opacity:1;}
+}
+
+@keyframes heroSweep{
+  0%,45%{
+    transform:translateX(-25%) rotate(18deg);
+    opacity:0;
+  }
+
+  55%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateX(210%) rotate(18deg);
+    opacity:0;
+  }
+}
+
+@keyframes scanLines{
+  0%{background-position:0 -40px;}
+  100%{background-position:0 40px;}
+}
+
+@keyframes borderFlow{
+  0%{background-position:0%;}
+  100%{background-position:300%;}
+}
+
+@keyframes dataPulse{
+  0%,100%{
+    opacity:.55;
+    transform:scaleY(.82);
+  }
+
+  50%{
+    opacity:1;
+    transform:scaleY(1);
+  }
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+
+@keyframes lineGlow{
+  0%,100%{opacity:.45;}
+  50%{opacity:1;}
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+  .module-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
 @media(max-width:800px){
   .navbar{
     flex-direction:column;
@@ -395,4 +678,14 @@ button:hover{
     right:2%;
     bottom:5%;
   }
+
+  .module-grid{
+    grid-template-columns:1fr;
+  }
+
+  .system-panel{
+    margin:40px 6%;
+    padding:24px;
+  }
 }
+```
