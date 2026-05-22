@@ -50,8 +50,7 @@ const AudioSystem = (() => {
     },
 
     activate(){
-      tone(700, 0.07, "triangle", 0.014);
-      setTimeout(() => tone(980, 0.07, "sine", 0.01), 90);
+      /* Silent for now to prevent clunking startup/scroll sounds */
     }
   };
 })();
@@ -79,18 +78,8 @@ interactiveItems.forEach((item) => {
   });
 });
 
-/* BOOT SEQUENCE */
+/* BOOT SEQUENCE - VISUAL ONLY */
 window.addEventListener("load", () => {
-  const startupSound = document.getElementById("startupSound");
-
-  if(startupSound){
-    startupSound.volume = 0.35;
-    startupSound.currentTime = 0;
-    startupSound.play().catch(() => {
-      console.log("Startup sound waiting for user interaction.");
-    });
-  }
-
   const bootScreen = document.createElement("div");
   bootScreen.className = "boot-screen";
 
@@ -111,13 +100,24 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     bootScreen.classList.add("boot-exit");
-    AudioSystem.activate();
   }, 2600);
 
   setTimeout(() => {
     bootScreen.remove();
   }, 3400);
 });
+
+/* STARTUP AUDIO ON ENTER SYSTEM */
+const enterButton = document.querySelector(".primary-btn");
+const startupSound = document.getElementById("startupSound");
+
+if(enterButton && startupSound){
+  enterButton.addEventListener("click", () => {
+    startupSound.volume = 0.4;
+    startupSound.currentTime = 0;
+    startupSound.play();
+  });
+}
 
 /* SCROLL REVEAL ACTIVATION */
 const revealItems = document.querySelectorAll(".system-panel, .os-module, .floating-card");
