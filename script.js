@@ -1,6 +1,9 @@
 console.log("HALOVECTOR Neon OS Initialized");
-/* HALOVECTOR FLASH INTRO */
+
+/* HALOVECTOR FLASH INTRO WITH VOICE */
 window.addEventListener("load", () => {
+  const introVoice = document.getElementById("introVoice");
+
   const intro = document.createElement("div");
   intro.className = "halo-intro";
 
@@ -14,6 +17,19 @@ window.addEventListener("load", () => {
 
   document.body.appendChild(intro);
 
+  if(introVoice){
+    introVoice.volume = 1;
+    introVoice.currentTime = 0;
+
+    const playPromise = introVoice.play();
+
+    if(playPromise !== undefined){
+      playPromise.catch(() => {
+        console.log("Intro voice autoplay blocked until user interaction.");
+      });
+    }
+  }
+
   setTimeout(() => {
     intro.classList.add("halo-intro-exit");
   }, 2800);
@@ -22,6 +38,7 @@ window.addEventListener("load", () => {
     intro.remove();
   }, 3700);
 });
+
 /* CURSOR GLOW */
 document.addEventListener("mousemove", (e) => {
   const glow = document.querySelector(".cursor-glow");
@@ -161,6 +178,8 @@ const terminalLogs = document.querySelector(".terminal-logs");
 
 let terminalMessageIndex = 0;
 let terminalLetterIndex = 0;
+let terminalActivated = false;
+let terminalLogInterval = null;
 
 function typeTerminalMessage(){
   if(!typingText) return;
@@ -201,6 +220,10 @@ function streamTerminalLog(){
 }
 
 function activateTerminal(){
+  if(terminalActivated) return;
+
+  terminalActivated = true;
+
   const terminal = document.querySelector(".ai-terminal-section");
 
   if(terminal){
@@ -209,7 +232,7 @@ function activateTerminal(){
 
   typeTerminalMessage();
 
-  setInterval(() => {
+  terminalLogInterval = setInterval(() => {
     streamTerminalLog();
   }, 2200);
 }
