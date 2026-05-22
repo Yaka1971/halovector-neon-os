@@ -1876,4 +1876,73 @@ button{
     transform:scale(1);
   }
 
+}/* =========================
+   MOBILE REACTOR FIX
+========================= */
+
+@media(max-width:700px){
+
+  .reactor-section{
+    min-height:auto;
+    padding:90px 5% 60px;
+    gap:30px;
+    overflow:hidden;
+  }
+
+  .reactor-core{
+    width:100%;
+    max-width:360px;
+    height:360px;
+    transform:scale(1);
+    margin:0 auto;
+  }
+
+  .ring-one{
+    width:190px;
+    height:190px;
+  }
+
+  .ring-two{
+    width:270px;
+    height:270px;
+  }
+
+  .ring-three{
+    width:350px;
+    height:350px;
+  }
+
+  .reactor-orb{
+    width:130px;
+    height:130px;
+  }
+
+  .hud-chip{
+    font-size:8px;
+    padding:8px 10px;
+    letter-spacing:1px;
+    max-width:140px;
+    white-space:nowrap;
+  }
+
+  .chip-one{
+    top:4%;
+    left:4%;
+  }
+
+  .chip-two{
+    top:16%;
+    right:4%;
+  }
+
+  .chip-three{
+    bottom:18%;
+    left:4%;
+  }
+
+  .chip-four{
+    bottom:4%;
+    right:4%;
+  }
+
 }
