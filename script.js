@@ -1,5 +1,27 @@
 console.log("HALOVECTOR Neon OS Initialized");
+/* HALOVECTOR FLASH INTRO */
+window.addEventListener("load", () => {
+  const intro = document.createElement("div");
+  intro.className = "halo-intro";
 
+  intro.innerHTML = `
+    <div class="halo-intro-content">
+      <h1 class="halo-intro-title">HALOVECTOR</h1>
+      <p class="halo-intro-subtitle">SYSTEMS INITIATED</p>
+      <div class="halo-intro-line"></div>
+    </div>
+  `;
+
+  document.body.appendChild(intro);
+
+  setTimeout(() => {
+    intro.classList.add("halo-intro-exit");
+  }, 2800);
+
+  setTimeout(() => {
+    intro.remove();
+  }, 3700);
+});
 /* CURSOR GLOW */
 document.addEventListener("mousemove", (e) => {
   const glow = document.querySelector(".cursor-glow");
