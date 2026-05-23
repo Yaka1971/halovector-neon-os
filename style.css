@@ -3789,3 +3789,13 @@ button{
   transform:translateX(0) scale(1);
   pointer-events:auto;
 }
+.halo-intro-logo{
+  width:min(720px,92vw);
+  height:auto;
+  display:block;
+  margin:0 auto 24px;
+  opacity:1 !important;
+  visibility:visible !important;
+  position:relative;
+  z-index:3;
+}
