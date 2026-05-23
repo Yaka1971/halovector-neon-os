@@ -683,17 +683,20 @@ if(aiOrbButton && aiOrbHud){
 
 }
 
-/* CURSOR FOLLOW */
+/* ORB CURSOR FOLLOW - STRONGER MAGNETIC MOTION */
 
 document.addEventListener("mousemove", (e) => {
 
   if(!aiOrbAssistant) return;
 
-  const x = (window.innerWidth / 2 - e.clientX) / 60;
-  const y = (window.innerHeight / 2 - e.clientY) / 60;
+  const moveX =
+    (e.clientX - window.innerWidth / 2) * 0.035;
+
+  const moveY =
+    (e.clientY - window.innerHeight / 2) * 0.035;
 
   aiOrbAssistant.style.transform =
-    `translate(${x}px, ${y}px)`;
+    `translate(${moveX}px, ${moveY}px)`;
 
 });
 
