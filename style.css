@@ -3745,3 +3745,9 @@ button{
   transform:translateY(15px);
   pointer-events:none;
 }
+/* AI ORB CURSOR FOLLOW FIX */
+
+.ai-orb-assistant{
+  will-change:transform !important;
+  transition:none !important;
+}
