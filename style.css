@@ -3777,3 +3777,15 @@ button{
   right:120px !important;
   bottom:10px !important;
 }
+.ai-orb-hud{
+  opacity:0;
+  transform:translateX(25px) scale(.92);
+  pointer-events:none;
+  transition:.35s ease;
+}
+
+.ai-orb-hud.orb-hud-open{
+  opacity:1;
+  transform:translateX(0) scale(1);
+  pointer-events:auto;
+}
