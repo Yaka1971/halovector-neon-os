@@ -622,3 +622,96 @@ setInterval(() => {
     }, 250);
   }
 }, 2800);
+/* =========================
+   AI ORB ASSISTANT ENGINE
+========================= */
+
+const aiOrbButton = document.getElementById("aiOrbButton");
+const aiOrbHud = document.getElementById("aiOrbHud");
+const aiOrbAssistant = document.getElementById("aiOrbAssistant");
+const aiDiagnosticText = document.getElementById("aiDiagnosticText");
+
+const diagnostics = [
+  "Scanning visual systems...",
+  "Neural matrix stable...",
+  "Ambient intelligence online...",
+  "Quantum telemetry synced...",
+  "Tracking interface activity...",
+  "Holographic systems active...",
+  "Reactor synchronization stable..."
+];
+
+let diagnosticIndex = 0;
+
+/* ROTATING DIAGNOSTICS */
+
+if(aiDiagnosticText){
+
+  setInterval(() => {
+
+    aiDiagnosticText.style.opacity = "0";
+
+    setTimeout(() => {
+
+      diagnosticIndex++;
+      
+      if(diagnosticIndex >= diagnostics.length){
+        diagnosticIndex = 0;
+      }
+
+      aiDiagnosticText.textContent = diagnostics[diagnosticIndex];
+
+      aiDiagnosticText.style.opacity = "1";
+
+    }, 250);
+
+  }, 2600);
+
+}
+
+/* ORB TOGGLE */
+
+if(aiOrbButton && aiOrbHud){
+
+  aiOrbButton.addEventListener("click", () => {
+
+    aiOrbHud.classList.toggle("orb-hud-hidden");
+
+    AudioSystem.click();
+
+  });
+
+}
+
+/* CURSOR FOLLOW */
+
+document.addEventListener("mousemove", (e) => {
+
+  if(!aiOrbAssistant) return;
+
+  const x = (window.innerWidth / 2 - e.clientX) / 60;
+  const y = (window.innerHeight / 2 - e.clientY) / 60;
+
+  aiOrbAssistant.style.transform =
+    `translate(${x}px, ${y}px)`;
+
+});
+
+/* ORB REACTION */
+
+if(aiOrbButton){
+
+  aiOrbButton.addEventListener("mouseenter", () => {
+
+    aiOrbButton.style.transform = "scale(1.08)";
+    AudioSystem.hover();
+
+  });
+
+  aiOrbButton.addEventListener("mouseleave", () => {
+
+    aiOrbButton.style.transform = "scale(1)";
+
+  });
+
+}
