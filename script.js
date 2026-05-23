@@ -718,3 +718,37 @@ if(aiOrbButton){
   });
 
 }
+/* =========================
+   AI ORB CURSOR FOLLOW FIX
+========================= */
+
+window.addEventListener("load", () => {
+  const orbAssistant = document.getElementById("aiOrbAssistant");
+
+  if(!orbAssistant){
+    console.log("AI Orb Assistant not found");
+    return;
+  }
+
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+
+  document.addEventListener("mousemove", (e) => {
+    targetX = (e.clientX - window.innerWidth / 2) * 0.06;
+    targetY = (e.clientY - window.innerHeight / 2) * 0.06;
+  });
+
+  function animateOrb(){
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    orbAssistant.style.transform =
+      `translate3d(${currentX}px, ${currentY}px, 0)`;
+
+    requestAnimationFrame(animateOrb);
+  }
+
+  animateOrb();
+});
