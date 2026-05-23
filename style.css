@@ -3740,3 +3740,8 @@ button{
   }
 
 }
+.orb-hud-hidden{
+  opacity:0;
+  transform:translateY(15px);
+  pointer-events:none;
+}
