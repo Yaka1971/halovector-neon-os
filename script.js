@@ -7,14 +7,27 @@ window.addEventListener("load", () => {
   const intro = document.createElement("div");
   intro.className = "halo-intro";
 
-  intro.innerHTML = `
-    <div class="halo-intro-content">
-      <h1 class="halo-intro-title">HALOVECTOR</h1>
-      <p class="halo-intro-subtitle">SYSTEMS STANDBY</p>
-      <button class="halo-power-btn" id="haloPowerBtn">POWER ON</button>
-      <div class="halo-intro-line"></div>
-    </div>
-  `;
+ intro.innerHTML = `
+  <div class="halo-intro-content">
+
+    <img
+      src="images/official-hvss-logo.png"
+      alt="HALOVECTOR Systems Studios Logo"
+      class="halo-intro-logo"
+    >
+
+    <p class="halo-intro-subtitle">
+      SYSTEMS STANDBY
+    </p>
+
+    <button class="halo-power-btn" id="haloPowerBtn">
+      POWER ON
+    </button>
+
+    <div class="halo-intro-line"></div>
+
+  </div>
+`;
 
   document.body.appendChild(intro);
 
