@@ -675,7 +675,7 @@ if(aiOrbButton && aiOrbHud){
 
   aiOrbButton.addEventListener("click", () => {
 
-    aiOrbHud.classList.toggle("orb-hud-hidden");
+    aiOrbHud.classList.toggle("orb-hud-open");
 
     AudioSystem.click();
 
