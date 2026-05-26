@@ -3799,3 +3799,64 @@ button{
   position:relative;
   z-index:3;
 }
+/* =========================
+   CINEMATIC INTRO LOGO BOOT
+========================= */
+
+.halo-intro-logo{
+  animation:
+    hvssLogoBoot 1.7s ease forwards,
+    hvssLogoFloat 4s ease-in-out infinite 1.8s !important;
+}
+
+@keyframes hvssLogoBoot{
+  0%{
+    opacity:0;
+    transform:scale(.72) translateY(30px);
+    filter:blur(18px) brightness(.6);
+  }
+
+  45%{
+    opacity:1;
+    transform:scale(1.08) translateY(-8px);
+    filter:blur(0) brightness(1.7);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1) translateY(0);
+    filter:
+      drop-shadow(0 0 26px rgba(0,229,255,.75))
+      drop-shadow(0 0 58px rgba(255,0,85,.45));
+  }
+}
+
+@keyframes hvssLogoFloat{
+  0%,100%{
+    transform:translateY(0) scale(1);
+  }
+
+  50%{
+    transform:translateY(-10px) scale(1.015);
+  }
+}
+
+.halo-intro::after{
+  animation:introFlashSweep 1.8s ease forwards !important;
+}
+
+.halo-intro-subtitle{
+  animation:introSubtitlePulse 1.2s ease-in-out infinite, hvssSubtitleBoot 1.2s ease forwards !important;
+}
+
+@keyframes hvssSubtitleBoot{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
