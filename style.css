@@ -3860,3 +3860,132 @@ button{
     transform:translateY(0);
   }
 }
+/* =========================
+   GLOBAL CINEMATIC POLISH
+========================= */
+
+:root{
+  --hv-transition-fast:.25s cubic-bezier(.22,.61,.36,1);
+  --hv-transition-medium:.45s cubic-bezier(.22,.61,.36,1);
+  --hv-transition-slow:.8s cubic-bezier(.22,.61,.36,1);
+}
+
+/* GLOBAL SMOOTHNESS */
+
+*{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* SMOOTH INTERFACE */
+
+button,
+nav a,
+.os-module,
+.command-module,
+.floating-card,
+.ai-orb-button,
+.visual-close-btn{
+  transition:
+    transform var(--hv-transition-fast),
+    opacity var(--hv-transition-fast),
+    background var(--hv-transition-medium),
+    border-color var(--hv-transition-medium),
+    box-shadow var(--hv-transition-medium),
+    color var(--hv-transition-fast);
+}
+
+/* PREMIUM HOVERS */
+
+.os-module:hover,
+.command-module:hover,
+.floating-card:hover{
+  transform:
+    translateY(-10px)
+    scale(1.018);
+
+  backdrop-filter:blur(24px);
+}
+
+/* BUTTON FEEL */
+
+button{
+  transform-origin:center;
+}
+
+button:active{
+  transform:scale(.96);
+}
+
+/* ORB SMOOTHNESS */
+
+.ai-orb-assistant{
+  backface-visibility:hidden;
+  perspective:1000px;
+}
+
+/* SCROLL FEEL */
+
+html{
+  scroll-behavior:smooth;
+}
+
+/* PREMIUM GLOW BALANCE */
+
+.reactor-orb,
+.visual-orb,
+.orb-core{
+  will-change:transform, filter;
+}
+
+/* CINEMATIC FADE */
+
+.reveal-item{
+  opacity:0;
+  transform:translateY(30px);
+  filter:blur(12px);
+
+  transition:
+    opacity .9s ease,
+    transform .9s ease,
+    filter .9s ease;
+}
+
+.reveal-active{
+  opacity:1;
+  transform:translateY(0);
+  filter:blur(0);
+}
+
+/* MICRO DEPTH */
+
+.system-panel,
+.command-center-section,
+.ai-terminal-section,
+.contact-panel{
+  position:relative;
+}
+
+.system-panel::after,
+.command-center-section::after,
+.ai-terminal-section::after,
+.contact-panel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(circle at top,
+    rgba(255,255,255,.025),
+    transparent 60%);
+
+  pointer-events:none;
+}
+
+/* REDUCE HARSHNESS */
+
+.neon-line,
+.status-fill,
+.telemetry-fill{
+  filter:saturate(1.15);
+}
